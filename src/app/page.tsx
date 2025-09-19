@@ -2,32 +2,31 @@ import Bentolio from "@/components/ui/bentolio";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="h-screen w-full overflow-auto">
       <Bentolio
         name={{
-          first: "SEU",
-          last: "NOME"
+          first: "SMART",
+          last: "PRINT"
         }}
-        title="Desenvolvedor Full Stack & Designer"
-        description="Criando experiências digitais incríveis com tecnologias modernas. Especializado em React, Next.js e design de interfaces."
-        curvedText="Digital"
+        title="Soluções Inteligentes em Impressão Digital"
+        description="Smart Print é líder em soluções de impressão digital, oferecendo tecnologia de ponta para empresas e profissionais. Especializada em impressão de alta qualidade, design gráfico e automação de processos."
+        curvedText="Impressão"
         projects={[
           {
-            name: "Portfolio",
-            image: "/bentolio/images/bentolio.png",
+            name: "Produtos",
+            image: "/bentolio/images/Smart Byte - Horizontal.png",
             link: "#"
-          },
-          { name: "E-commerce", link: "#" },
-          { name: "Dashboard", link: "#" },
-          { name: "Mobile App", link: "#" }
+          }
         ]}
         socialLinks={[
-          { name: "GitHub", url: "https://github.com/seuusuario" },
-          { name: "LinkedIn", url: "https://linkedin.com/in/seuusuario" },
-          { name: "Twitter", url: "https://twitter.com/seuusuario" }
+          { name: "Instagram", url: "https://instagram.com/smartprint" },
+          { name: "LinkedIn", url: "https://linkedin.com/company/smartprint" },
+          { name: "WhatsApp", url: "https://wa.me/5511999999999" }
         ]}
-        bg="#E8F3FF"
-        secondary="#B8DCFF"
+        profileImage="/bentolio/images/Smart Byte - Horizontal.png"
+        bg="#F6F1E9"
+        secondary="#EF7722"
+        secondaryTextColor="#4F200D"
       />
     </div>
   );

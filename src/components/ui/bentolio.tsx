@@ -5,6 +5,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AnimatedLogo from "./animated-logo";
 
 interface Project {
   name: string;
@@ -55,14 +56,14 @@ export default function Bentolio({
   projects = [
     {
       name: "Musea",
-      image: "https://atomix-ui.vercel.app/bentolio/images/bentolio.png",
+      image: "/bentolio/images/Smart Byte - Horizontal.png",
       link: "#",
     },
     { name: "Elara", link: "#" },
     { name: "Verve", link: "#" },
     { name: "Zephyr", link: "#" },
   ],
-  profileImage = "/bentolio/images/bentolio.png",
+  profileImage = "/bentolio/images/Smart Byte - Horizontal.png",
   socialLinks = [
     {
       name: "Instagram",
@@ -82,23 +83,23 @@ export default function Bentolio({
 }: BentolioProps) {
   const router = useRouter();
   return (
-    <div className="relative flex flex-col gap-4 mx-auto sm:px-0 p-3 sm:p-6 w-full max-w-[1200px] text-black">
+    <div className="relative flex flex-col gap-4 w-full min-h-full text-black px-3 sm:px-6 py-3 sm:py-6">
       <AnimatePresence>
         <header key="header" className="rounded-[20px] w-full">
           <motion.div
-            style={{ backgroundColor: bg }}
+            style={{ backgroundColor: "#EF7722" }}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={springAnimation}
             className="flex sm:flex-row flex-col justify-between items-center p-4 sm:p-6 rounded-[20px] w-full"
           >
-            <h1 className="mb-4 sm:mb-0 font-light text-black text-xl sm:text-2xl">
+            <h1 className="mb-4 sm:mb-0 font-light text-2xl sm:text-3xl lg:text-4xl" style={{ color: secondaryTextColor }}>
               <i>{name.first}</i>{" "}
               <span className="font-medium">{name.last}</span>
             </h1>
             <nav className="flex items-center gap-6 sm:gap-12">
               {navLinks.map((link) => (
-                <p key={link} className="font-light text-sm sm:text-base">
+                <p key={link} className="font-light text-base sm:text-lg lg:text-xl" style={{ color: secondaryTextColor }}>
                   {link}
                 </p>
               ))}
@@ -106,26 +107,24 @@ export default function Bentolio({
           </motion.div>
         </header>
 
-        <div key="main-content" className="gap-4 grid grid-cols-1 lg:grid-cols-9">
+        <div key="main-content" className="gap-4 grid grid-cols-1 lg:grid-cols-9 flex-1">
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:col-span-6">
             <div className="sm:col-span-2 lg:col-span-4 rounded-[20px] h-full">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={springAnimation}
-                style={{ backgroundColor: bg }}
+                style={{ backgroundColor: "#3B82F6" }}
                 className="flex flex-col justify-between p-4 sm:p-6 pb-6 sm:pb-10 rounded-[20px] h-full"
               >
                 <div className="flex justify-end w-full">
-                  <Image
-                    src="https://atomix-ui.vercel.app/bentolio/svg/flower.svg"
-                    alt="flower"
+                  <AnimatedLogo
                     width={80}
                     height={80}
                     className="m-0 w-16 sm:w-20 lg:w-24"
                   />
                 </div>
-                <p className="m-0 w-full sm:w-[90%] font-bold text-3xl text-black sm:text-[44px] leading-tight sm:leading-[44px]">
+                <p className="m-0 w-full sm:w-[90%] font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight sm:leading-tight" style={{ color: "#FFFFFF" }}>
                   {title.includes(curvedText) ? (
                     title.split(curvedText).map((part, i) =>
                       i === 0 ? (
@@ -149,21 +148,15 @@ export default function Bentolio({
                 initial={{ translateX: -40, translateY: 40 }}
                 animate={{ translateX: 0, translateY: 0 }}
                 transition={{ ...springAnimation, delay: 0.5 }}
-                className="w-full h-full min-h-[300px] sm:min-h-[400px]"
+                className="w-full h-full min-h-[300px] sm:min-h-[400px] bg-gray-100 rounded-[20px] flex items-center justify-center"
               >
-                <Image
-                  src={profileImage}
-                  alt="profile"
-                  width={330}
-                  height={476}
-                  className="m-0 rounded-[20px] w-full h-full object-cover"
-                />
+                <p className="text-gray-500 text-center text-lg sm:text-xl">Imagem de perfil</p>
               </motion.div>
             </div>
 
             <div className="sm:col-span-1 lg:col-span-3">
               <motion.div
-                style={{ backgroundColor: bg }}
+                style={{ backgroundColor: "#EF7722" }}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={springAnimation}
@@ -176,7 +169,7 @@ export default function Bentolio({
                   height={32}
                   className="w-6 sm:w-8"
                 />
-                <p className="m-0 w-full sm:w-[90%] font-light text-sm">
+                <p className="m-0 w-full sm:w-[90%] font-light text-base sm:text-lg lg:text-xl" style={{ color: secondaryTextColor }}>
                   {description}
                 </p>
               </motion.div>
@@ -194,10 +187,10 @@ export default function Bentolio({
                 animate={{ scale: 1 }}
                 transition={springAnimation}
                 className="flex flex-col justify-between items-start gap-6 sm:gap-8 sm:px-6 sm:py-8 p-4 rounded-[20px] h-full"
-                style={{ backgroundColor: secondary, color: secondaryTextColor }}
+                style={{ backgroundColor: "#FAA533", color: secondaryTextColor }}
               >
                 <div className="flex justify-between items-center w-full">
-                  <p className="w-20 sm:w-[80px] font-light text-xs sm:text-sm leading-tight sm:leading-[16px]">
+                  <p className="w-20 sm:w-[80px] font-light text-sm sm:text-base lg:text-lg leading-tight">
                     Have some questions?
                   </p>
                   <Image
@@ -208,7 +201,7 @@ export default function Bentolio({
                     className="w-6 sm:w-8"
                   />
                 </div>
-                <p className="m-0 font-medium text-3xl sm:text-[50px]">
+                <p className="m-0 font-medium text-4xl sm:text-5xl lg:text-6xl">
                   Contact me
                 </p>
               </motion.div>
@@ -216,13 +209,13 @@ export default function Bentolio({
           </div>
 
           <div className="flex flex-col gap-4 lg:col-span-3">
-            <div>
+            <div className="flex-1">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={springAnimation}
-                style={{ backgroundColor: bg }}
-                className="flex-1 sm:px-6 sm:py-8 p-4 rounded-[20px]"
+                style={{ backgroundColor: "#EF7722" }}
+                className="h-full sm:px-6 sm:py-8 p-4 rounded-[20px]"
               >
                 {projects.map((project, index) => (
                   <div key={project.name}>
@@ -233,9 +226,9 @@ export default function Bentolio({
                           style={{
                             textDecoration: "none",
                           }}
-                          className="flex justify-between items-center w-full text-black"
+                          className="flex justify-between items-center w-full"
                         >
-                          <p className="m-0 font-medium text-xl sm:text-2xl">
+                          <p className="m-0 font-medium text-2xl sm:text-3xl lg:text-4xl" style={{ color: secondaryTextColor }}>
                             {project.name}
                           </p>
                           <Image
@@ -246,23 +239,14 @@ export default function Bentolio({
                             className="w-5 sm:w-6"
                           />
                         </Link>
-                        {project.image && (
-                          <Image
-                            src={project.image}
-                            alt={project.name}
-                            width={330}
-                            height={330}
-                            className="mt-4 sm:mt-5 mb-6 sm:mb-[30px] rounded-[20px] w-full h-[160px] sm:h-[200px] object-cover"
-                          />
-                        )}
                       </>
                     ) : (
                       <div
                         onClick={() => router.push(project.link || "#")}
                         className="py-6 sm:py-8 border-t-[2px] cursor-pointer"
-                        style={{ borderTopColor: secondary }}
+                        style={{ borderTopColor: "#FAA533" }}
                       >
-                        <p className="m-0 font-medium text-xl sm:text-2xl">
+                        <p className="m-0 font-medium text-2xl sm:text-3xl lg:text-4xl">
                           {project.name}
                         </p>
                       </div>
@@ -274,8 +258,8 @@ export default function Bentolio({
 
             <div>
               <motion.div
-                className="flex justify-between items-center px-6 sm:px-[50px] py-6 sm:py-10 rounded-[20px] font-light text-xs sm:text-sm"
-                style={{ backgroundColor: bg }}
+                className="flex justify-between items-center px-6 sm:px-[50px] py-6 sm:py-10 rounded-[20px] font-light text-base sm:text-lg lg:text-xl"
+                style={{ backgroundColor: "#EF7722" }}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={springAnimation}
