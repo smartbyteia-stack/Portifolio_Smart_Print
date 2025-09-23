@@ -9,7 +9,7 @@ export default function Home() {
           last: "PRINT"
         }}
         title="Soluções Inteligentes em Impressão Digital"
-        description="Smart Print é líder em soluções de impressão digital, oferecendo tecnologia de ponta para empresas e profissionais. Especializada em impressão de alta qualidade, design gráfico e automação de processos."
+        description="Smart Print é referência em soluções de impressão 3D e digital, oferecendo tecnologia de ponta para empresas e profissionais. Especializada em impressão de alta precisão e design criativo, transformamos ideias em projetos concretos com eficiência e qualidade."
         curvedText="Impressão"
         projectCategories={{
           "Chaveiro": [
@@ -176,10 +176,10 @@ export default function Home() {
           ]
         }}
         socialLinks={[
-          { name: "Instagram", url: "https://instagram.com/smartprint" },
-          { name: "LinkedIn", url: "https://linkedin.com/company/smartprint" },
-          { name: "WhatsApp", url: "https://wa.me/5511999999999" }
+          { name: "Instagram", url: "https://www.instagram.com/smartprint.3d/" },
+          { name: "WhatsApp", url: "https://api.whatsapp.com/send?phone=5569999914773&text=Ol%C3%A1%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20uma%20impress%C3%A3o%203D" }
         ]}
+        contactLink="https://api.whatsapp.com/send?phone=5569999914773&text=Ol%C3%A1%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20uma%20impress%C3%A3o%203D"
         profileImage="/bentolio/images/Smart Byte - Horizontal.png"
         bg="#F6F1E9"
         secondary="#EF7722"
