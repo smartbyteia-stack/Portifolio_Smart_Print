@@ -408,177 +408,338 @@ export default function Bentolio({
             </Link>
           </div>
 
-          <div className="flex flex-col gap-4 lg:col-span-3">
+          <div className="flex flex-col gap-6 lg:col-span-3">
             <div className="flex-1">
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={springAnimation}
-                className="h-full p-0 rounded-[20px] flex flex-col overflow-hidden shadow-2xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200/50 backdrop-blur-sm"
+                initial={{ scale: 0, opacity: 0, y: 50 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                transition={{ ...springAnimation, duration: 0.8 }}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="relative h-full p-0 rounded-[32px] flex flex-col overflow-hidden group"
+                style={{
+                  background: "linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.05) 100%)",
+                  backdropFilter: "blur(20px) saturate(180%) brightness(110%)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 32px 64px rgba(0,0,0,0.15), 0 16px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3)"
+                }}
               >
-                {/* Título e navegação por categorias - dentro do card */}
-                 <div className="relative z-10 p-6 rounded-t-[20px] border-b" style={{ backgroundColor: "#D8CFBC", color: "#11120D" }}>
-                   <h3 className="coolvetica-font text-2xl sm:text-3xl font-bold mb-4 drop-shadow-xl tracking-wide" style={{ color: "#11120D" }}>
-                      Produtos
-                    </h3>
-                   {projectCategories && (
-                     <div className="flex flex-wrap gap-3">
-                       {Object.keys(projectCategories).map((category) => (
-                         <button
-                           key={category}
-                           onClick={() => {
-                             setSelectedCategory(category);
-                             setCurrentProjectIndex(0);
-                           }}
-                           className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-500 ease-out backdrop-blur-md ${
-                              selectedCategory === category
-                                ? 'shadow-xl transform scale-110 ring-2 ring-orange-300/50'
-                                : 'bg-white/10 border border-white/40 hover:scale-105 hover:shadow-lg'
-                            }`}
-                           style={{
-                             backgroundColor: selectedCategory === category ? '#1C1C1C' : 'transparent',
-                             color: selectedCategory === category ? 'white' : '#11120D'
-                           }}
-                         >
-                           {category}
-                         </button>
-                       ))}
-                     </div>
-                   )}
-                 </div>
+                {/* Elementos decorativos de fundo */}
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-purple-400/30 to-pink-400/30 rounded-full blur-3xl animate-pulse" />
+                  <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-gradient-to-r from-orange-400/25 to-yellow-400/25 rounded-full blur-2xl animate-pulse delay-500" />
+                </div>
                 
-                {/* Área do produto atual - ocupando o espaço restante */}
-                 <div className="flex-1 flex flex-col relative">
-                   {displayProjects && displayProjects.length > 0 && (
-                     <div className="flex-1 flex flex-col relative">
-                       {/* Imagem do produto ocupando todo o espaço restante */}
-                       {displayProjects[currentProjectIndex]?.image && (
-                         <div 
-                           className="relative w-full flex-1 cursor-grab active:cursor-grabbing"
-                           onWheel={(e) => {
-                             e.preventDefault();
-                             pauseAutoPlay();
-                             if (e.deltaY > 0) {
-                               setCurrentProjectIndex(prev => 
-                                 prev === displayProjects.length - 1 ? 0 : prev + 1
-                               );
-                             } else {
-                               setCurrentProjectIndex(prev => 
-                                 prev === 0 ? displayProjects.length - 1 : prev - 1
-                               );
-                             }
-                             resumeAutoPlay();
-                           }}
-                           onMouseDown={(e) => {
-                             // Verificar se estamos no cliente antes de usar document
-                             if (typeof window === 'undefined') return;
-                             
-                             pauseAutoPlay();
-                             const startX = e.clientX;
-                             const handleMouseMove = (moveEvent: MouseEvent) => {
-                               const deltaX = moveEvent.clientX - startX;
-                               setIsDragging(true);
-                               
-                               // Determinar direção do arrasto
-                               if (Math.abs(deltaX) > 10) {
-                                 setDragDirection(deltaX > 0 ? 'right' : 'left');
-                               }
-                               
-                               if (Math.abs(deltaX) > 50) {
-                                 if (deltaX > 0) {
-                                   setCurrentProjectIndex(prev => 
-                                     prev === 0 ? displayProjects.length - 1 : prev - 1
-                                   );
-                                 } else {
-                                   setCurrentProjectIndex(prev => 
-                                     prev === displayProjects.length - 1 ? 0 : prev + 1
-                                   );
-                                 }
-                                 setIsDragging(false);
-                                 setDragDirection(null);
-                                 if (typeof document !== 'undefined') {
-                                   document.removeEventListener('mousemove', handleMouseMove);
-                                   document.removeEventListener('mouseup', handleMouseUp);
-                                 }
-                               }
-                             };
-                             const handleMouseUp = () => {
-                               setIsDragging(false);
-                               setDragDirection(null);
-                               resumeAutoPlay();
-                               if (typeof document !== 'undefined') {
-                                 document.removeEventListener('mousemove', handleMouseMove);
-                                 document.removeEventListener('mouseup', handleMouseUp);
-                               }
-                             };
-                             if (typeof document !== 'undefined') {
-                               document.addEventListener('mousemove', handleMouseMove);
-                               document.addEventListener('mouseup', handleMouseUp);
-                             }
-                           }}
-                         >
-                          <Image
-                            src={displayProjects[currentProjectIndex].image}
-                            alt={displayProjects[currentProjectIndex].name}
-                            fill
-                            className={`object-cover transition-all duration-300 ease-out select-none ${
+                {/* Brilho superior animado */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent animate-pulse" />
+                
+                {/* Título e navegação por categorias - mais compacto */}
+                <div className="relative z-10 p-4 sm:p-6 rounded-t-[32px] flex-shrink-0" style={{ 
+                  background: "linear-gradient(135deg, #D8CFBC 0%, #C5B8A5 50%, #D8CFBC 100%)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 16px rgba(0,0,0,0.1)"
+                }}>
+                  <motion.h3 
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="coolvetica-font text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 tracking-wide"
+                    style={{ 
+                      color: "#11120D",
+                      textShadow: "0 2px 4px rgba(0,0,0,0.1), 0 1px 2px rgba(255,255,255,0.8)",
+                      background: "linear-gradient(135deg, #11120D 0%, #2C2922 50%, #11120D 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text"
+                    }}
+                  >
+                    Produtos
+                  </motion.h3>
+                  {projectCategories && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.6 }}
+                      className="flex flex-wrap gap-2 sm:gap-3"
+                    >
+                      {Object.keys(projectCategories).map((category, index) => (
+                        <motion.button
+                          key={category}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => {
+                            setSelectedCategory(category);
+                            setCurrentProjectIndex(0);
+                          }}
+                          className={`relative px-3 py-2 sm:px-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-500 ease-out overflow-hidden group/btn ${
+                             selectedCategory === category
+                               ? 'shadow-2xl transform scale-110'
+                               : 'hover:shadow-xl'
+                           }`}
+                          style={{
+                            background: selectedCategory === category 
+                              ? 'linear-gradient(135deg, #1C1C1C 0%, #2C2C2C 50%, #1C1C1C 100%)'
+                              : 'rgba(255,255,255,0.15)',
+                            backdropFilter: 'blur(10px)',
+                            border: selectedCategory === category 
+                              ? '2px solid rgba(239,119,34,0.6)'
+                              : '1px solid rgba(255,255,255,0.3)',
+                            color: selectedCategory === category ? 'white' : '#11120D',
+                            boxShadow: selectedCategory === category 
+                              ? '0 8px 32px rgba(239,119,34,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
+                              : '0 4px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3)'
+                          }}
+                        >
+                          {/* Efeito de brilho no hover */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
+                          <span className="relative z-10">{category}</span>
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+                
+                {/* Área do produto atual - ocupando a maior parte do espaço */}
+                <motion.div 
+                  className="flex-1 flex flex-col relative overflow-hidden min-h-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  {displayProjects && displayProjects.length > 0 && (
+                    <div className="flex-1 flex flex-col relative">
+                      {/* Imagem do produto ocupando todo o espaço restante */}
+                      {displayProjects[currentProjectIndex]?.image && (
+                        <motion.div 
+                          className="relative w-full flex-1 cursor-grab active:cursor-grabbing group/image overflow-hidden min-h-[300px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] bg-gradient-to-br from-white/5 to-white/10 rounded-lg"
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          onWheel={(e) => {
+                            e.preventDefault();
+                            pauseAutoPlay();
+                            if (e.deltaY > 0) {
+                              setCurrentProjectIndex(prev => 
+                                prev === displayProjects.length - 1 ? 0 : prev + 1
+                              );
+                            } else {
+                              setCurrentProjectIndex(prev => 
+                                prev === 0 ? displayProjects.length - 1 : prev - 1
+                              );
+                            }
+                            resumeAutoPlay();
+                          }}
+                          onMouseDown={(e) => {
+                            // Verificar se estamos no cliente antes de usar document
+                            if (typeof window === 'undefined') return;
+                            
+                            pauseAutoPlay();
+                            const startX = e.clientX;
+                            const handleMouseMove = (moveEvent: MouseEvent) => {
+                              const deltaX = moveEvent.clientX - startX;
+                              setIsDragging(true);
+                              
+                              // Determinar direção do arrasto
+                              if (Math.abs(deltaX) > 10) {
+                                setDragDirection(deltaX > 0 ? 'right' : 'left');
+                              }
+                              
+                              if (Math.abs(deltaX) > 50) {
+                                if (deltaX > 0) {
+                                  setCurrentProjectIndex(prev => 
+                                    prev === 0 ? displayProjects.length - 1 : prev - 1
+                                  );
+                                } else {
+                                  setCurrentProjectIndex(prev => 
+                                    prev === displayProjects.length - 1 ? 0 : prev + 1
+                                  );
+                                }
+                                setIsDragging(false);
+                                setDragDirection(null);
+                                if (typeof document !== 'undefined') {
+                                  document.removeEventListener('mousemove', handleMouseMove);
+                                  document.removeEventListener('mouseup', handleMouseUp);
+                                }
+                              }
+                            };
+                            const handleMouseUp = () => {
+                              setIsDragging(false);
+                              setDragDirection(null);
+                              resumeAutoPlay();
+                              if (typeof document !== 'undefined') {
+                                document.removeEventListener('mousemove', handleMouseMove);
+                                document.removeEventListener('mouseup', handleMouseUp);
+                              }
+                            };
+                            if (typeof document !== 'undefined') {
+                              document.addEventListener('mousemove', handleMouseMove);
+                              document.addEventListener('mouseup', handleMouseUp);
+                            }
+                          }}
+                        >
+                          <motion.div
+                            key={`${selectedCategory}-${currentProjectIndex}`}
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            className="absolute inset-0"
+                          >
+                            <Image
+                              src={displayProjects[currentProjectIndex].image}
+                              alt={displayProjects[currentProjectIndex].name}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              priority
+                              className={`object-contain transition-all duration-500 ease-out select-none ${
+                                isDragging 
+                                  ? dragDirection === 'right' 
+                                    ? 'scale-110 translate-x-3 brightness-110 saturate-110' 
+                                    : 'scale-110 -translate-x-3 brightness-110 saturate-110'
+                                  : 'group-hover/image:scale-105 group-hover/image:brightness-105'
+                              }`}
+                              style={{
+                                objectFit: 'contain',
+                                objectPosition: 'center'
+                              }}
+                              draggable={false}
+                            />
+                          </motion.div>
+                          
+                          {/* Overlay gradiente sofisticado */}
+                          <div className="absolute inset-0 pointer-events-none">
+                            <div className={`absolute inset-0 transition-all duration-500 ${
                               isDragging 
-                                ? dragDirection === 'right' 
-                                  ? 'scale-105 translate-x-2 brightness-110' 
-                                  : 'scale-105 -translate-x-2 brightness-110'
-                                : 'hover:scale-105'
-                            }`}
-                            draggable={false}
-                          />
-                          {/* Overlay gradiente sutil com animação */}
-                          <div className={`absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none transition-all duration-300 ${
-                            isDragging ? 'bg-gradient-to-t from-[#EF7722]/30 via-transparent to-transparent' : ''
-                          }`} />
-                          
+                                ? 'bg-gradient-to-t from-[#EF7722]/40 via-purple-500/10 to-transparent' 
+                                : 'bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover/image:from-black/20'
+                            }`} />
+                            
+                            {/* Efeito de brilho no hover */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                            
+                            {/* Partículas flutuantes - responsivas */}
+                             <div className="absolute top-2 left-2 sm:top-4 sm:left-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/40 rounded-full animate-ping" />
+                             <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-1 h-1 bg-[#EF7722]/60 rounded-full animate-pulse delay-300" />
+                             <div className="absolute bottom-8 left-4 sm:bottom-12 sm:left-8 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400/50 rounded-full animate-pulse delay-700" />
+                          </div>
                           {/* Indicador visual de direção durante o arrasto */}
-                          {isDragging && dragDirection && (
-                            <div className={`absolute top-1/2 transform -translate-y-1/2 z-30 transition-all duration-200 ${
-                              dragDirection === 'right' ? 'left-4 animate-pulse' : 'right-4 animate-pulse'
-                            }`}>
-                              <div className="backdrop-blur-sm text-white px-3 py-2 rounded-full text-sm font-bold shadow-lg" style={{ backgroundColor: '#EF7722CC' }}>
-                                {dragDirection === 'right' ? '← Anterior' : 'Próximo →'}
-                              </div>
-                            </div>
-                          )}
-                          
-
-                          
-                          {/* Nome do produto */}
-                           <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-6 backdrop-blur-sm">
-                             <div className="flex items-center gap-2">
-                               <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#EF7722' }} />
-                               <motion.h4 
-                                 key={`${selectedCategory}-${currentProjectIndex}`}
-                                 initial={{ opacity: 0, y: 20 }}
+                           {isDragging && dragDirection && (
+                             <motion.div 
+                               initial={{ opacity: 0, scale: 0.8 }}
+                               animate={{ opacity: 1, scale: 1 }}
+                               exit={{ opacity: 0, scale: 0.8 }}
+                               className={`absolute top-1/2 transform -translate-y-1/2 z-30 ${
+                                 dragDirection === 'right' ? 'left-3 sm:left-4 md:left-6' : 'right-3 sm:right-4 md:right-6'
+                               }`}
+                             >
+                               <div 
+                                 className="backdrop-blur-md text-white px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold shadow-2xl border border-white/20"
+                                 style={{ 
+                                   background: 'linear-gradient(135deg, #EF7722 0%, #FF8A3D 50%, #EF7722 100%)',
+                                   boxShadow: '0 8px 32px rgba(239,119,34,0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
+                                 }}
+                               >
+                                 <div className="flex items-center gap-1.5 sm:gap-2">
+                                   <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse ${
+                                     dragDirection === 'right' ? 'order-first' : 'order-last'
+                                   }`} />
+                                   <span className="hidden sm:inline">{dragDirection === 'right' ? '← Anterior' : 'Próximo →'}</span>
+                                   <span className="sm:hidden">{dragDirection === 'right' ? '←' : '→'}</span>
+                                 </div>
+                               </div>
+                             </motion.div>
+                           )}
+                          {/* Nome do produto com design sofisticado */}
+                          <div className="absolute bottom-0 left-0 right-0 z-20">
+                            <div 
+                               className="p-3 sm:p-4 md:p-6 backdrop-blur-xl"
+                               style={{
+                                 background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.95) 100%)',
+                                 borderTop: '1px solid rgba(255,255,255,0.1)'
+                               }}
+                             >
+                              <motion.div 
+                                 className="flex items-center gap-2 sm:gap-3"
+                                 initial={{ opacity: 0, y: 30 }}
                                  animate={{ opacity: 1, y: 0 }}
-                                 transition={{ duration: 0.3 }}
-                                 className="coolvetica-font text-xl sm:text-2xl lg:text-3xl font-bold text-white drop-shadow-2xl tracking-wide"
+                                 transition={{ delay: 0.2, duration: 0.6 }}
+                               >
+                                {/* Indicador animado */}
+                                 <div className="relative">
+                                   <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full animate-pulse" style={{ backgroundColor: '#EF7722' }} />
+                                   <div className="absolute inset-0 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full animate-ping" style={{ backgroundColor: '#EF7722', opacity: 0.4 }} />
+                                 </div>
+                                
+                                <motion.h4 
+                                 key={`${selectedCategory}-${currentProjectIndex}`}
+                                 initial={{ opacity: 0, x: -20 }}
+                                 animate={{ opacity: 1, x: 0 }}
+                                 transition={{ duration: 0.5, ease: "easeOut" }}
+                                 className="coolvetica-font text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white tracking-wide flex-1"
+                                 style={{
+                                   textShadow: '0 4px 8px rgba(0,0,0,0.5), 0 2px 4px rgba(239,119,34,0.3)',
+                                   background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 50%, #FFFFFF 100%)',
+                                   WebkitBackgroundClip: 'text',
+                                   WebkitTextFillColor: 'transparent',
+                                   backgroundClip: 'text'
+                                 }}
                                >
                                  {displayProjects[currentProjectIndex].name}
                                </motion.h4>
-                             </div>
-                           </div>
-                          
-
-                          
-                          {/* Contador de produtos e indicador de auto-play */}
-                          {displayProjects.length > 1 && (
-                            <div className="absolute top-4 right-4 flex items-center gap-2">
-                              <div className="backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-bold shadow-2xl border border-white/20" style={{ backgroundColor: '#1C1C1C' }}>
-                                {currentProjectIndex + 1} / {displayProjects.length}
-                              </div>
+                              </motion.div>
+                              
+                              {/* Linha decorativa */}
+                               <motion.div 
+                                 className="mt-1.5 sm:mt-2 h-0.5 rounded-full"
+                                 style={{
+                                   background: 'linear-gradient(90deg, #EF7722 0%, #FF8A3D 50%, #EF7722 100%)'
+                                 }}
+                                 initial={{ width: 0 }}
+                                 animate={{ width: '100%' }}
+                                 transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                               />
                             </div>
+                          </div>
+                          {/* Contador de produtos sofisticado */}
+                           {displayProjects.length > 1 && (
+                             <motion.div 
+                               className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 flex items-center gap-2 sm:gap-3 z-30"
+                               initial={{ opacity: 0, scale: 0.8 }}
+                               animate={{ opacity: 1, scale: 1 }}
+                               transition={{ delay: 1, duration: 0.5 }}
+                             >
+                              <div 
+                                 className="backdrop-blur-xl text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold shadow-2xl border border-white/20 group/counter"
+                                 style={{ 
+                                   background: 'linear-gradient(135deg, rgba(28,28,28,0.9) 0%, rgba(44,44,44,0.9) 50%, rgba(28,28,28,0.9) 100%)',
+                                   boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
+                                 }}
+                               >
+                                <div className="flex items-center gap-1.5 sm:gap-2">
+                                   <span className="text-[#EF7722] font-bold">{currentProjectIndex + 1}</span>
+                                   <div className="w-px h-3 sm:h-4 bg-white/30" />
+                                   <span className="text-white/70">{displayProjects.length}</span>
+                                 </div>
+                                
+                                {/* Barra de progresso */}
+                                 <div className="mt-1.5 sm:mt-2 w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
+                                   <motion.div 
+                                     className="h-full rounded-full"
+                                     style={{ background: 'linear-gradient(90deg, #EF7722 0%, #FF8A3D 100%)' }}
+                                     initial={{ width: 0 }}
+                                     animate={{ width: `${((currentProjectIndex + 1) / displayProjects.length) * 100}%` }}
+                                     transition={{ duration: 0.5, ease: "easeOut" }}
+                                   />
+                                 </div>
+                              </div>
+                            </motion.div>
                           )}
-                        </div>
+                        </motion.div>
                       )}
                     </div>
                   )}
-                </div>
+                </motion.div>
               </motion.div>
             </div>
 
