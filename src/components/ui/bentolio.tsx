@@ -4,7 +4,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import AnimatedLogo from "./animated-logo";
 import { LiquidButton } from "@/components/liquid-glass-button";
 
@@ -45,9 +44,6 @@ const springAnimation = {
 };
 
 export default function Bentolio({
-  bg = "#FADCD9",
-  secondary = "#F8AFA6",
-  secondaryTextColor = "#000",
   name = {
     first: "JULIA",
     last: "HUANG",
@@ -66,7 +62,6 @@ export default function Bentolio({
     { name: "Zephyr", link: "#" },
   ],
   projectCategories,
-  profileImage = "/bentolio/images/Smart Byte - Horizontal.png",
   socialLinks = [
     {
       name: "Instagram",
@@ -82,9 +77,7 @@ export default function Bentolio({
     },
   ],
   contactLink = "#",
-  navLinks = [],
 }: BentolioProps) {
-  const router = useRouter();
   
   // Estado para gerenciar categorias
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
