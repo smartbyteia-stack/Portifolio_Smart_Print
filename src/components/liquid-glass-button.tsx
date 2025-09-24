@@ -315,8 +315,10 @@ export const MetalButton = React.forwardRef<
   const [isPressed, setIsPressed] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+  const [isClient, setIsClient] = React.useState(false);
  
   React.useEffect(() => {
+    setIsClient(true);
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
  
@@ -324,8 +326,8 @@ export const MetalButton = React.forwardRef<
   const variants = metalButtonVariants(
     variant,
     isPressed,
-    isHovered,
-    isTouchDevice,
+    isHovered && isClient,
+    isTouchDevice && isClient,
   );
  
   const handleInternalMouseDown = () => {
@@ -339,7 +341,7 @@ export const MetalButton = React.forwardRef<
     setIsHovered(false);
   };
   const handleInternalMouseEnter = () => {
-    if (!isTouchDevice) {
+    if (isClient && !isTouchDevice) {
       setIsHovered(true);
     }
   };

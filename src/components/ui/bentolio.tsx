@@ -130,7 +130,7 @@ export default function Bentolio({
     }, 5000); // Retoma após 5 segundos de inatividade
   };
   return (
-    <div className="relative flex flex-col gap-2 sm:gap-4 w-full min-h-screen text-black px-2 sm:px-4 lg:px-6 py-2 sm:py-4 lg:py-6" style={{ backgroundColor: "#000000" }}>
+    <div className="relative flex flex-col gap-2 sm:gap-4 w-full h-full overflow-hidden text-black px-2 sm:px-4 lg:px-6 py-2 sm:py-4 lg:py-6" style={{ backgroundColor: "#000000" }}>
       <AnimatePresence>
         <header key="header" className="rounded-[20px] w-full">
           <motion.div
@@ -149,8 +149,8 @@ export default function Bentolio({
           </motion.div>
         </header>
 
-        <div key="main-content" className="gap-2 sm:gap-4 grid grid-cols-1 lg:grid-cols-9 flex-1">
-          <div className="gap-2 sm:gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:col-span-6 max-[414px]:grid-cols-1">
+        <div key="main-content" className="gap-2 sm:gap-4 grid grid-cols-1 lg:grid-cols-9 flex-1 h-full overflow-hidden">
+          <div className="gap-2 sm:gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:col-span-6 max-[414px]:grid-cols-1 h-full">
             <div className="sm:col-span-2 lg:col-span-4 rounded-[20px] h-full">
               <motion.div
                 initial={{ scale: 0 }}
@@ -400,20 +400,21 @@ export default function Bentolio({
             </Link>
           </div>
 
-          <div className="flex flex-col gap-4 lg:gap-6 lg:col-span-3 max-[414px]:col-span-1 max-[414px]:w-full">
-            <div className="flex-1 min-h-[400px] max-[414px]:min-h-[300px]">
+          <div className="flex flex-col gap-4 lg:gap-6 lg:col-span-3 max-[414px]:col-span-1 max-[414px]:w-full h-full overflow-hidden">
+            <div className="flex-1 h-full max-[414px]:min-h-0">
               <motion.div
                 initial={{ scale: 0, opacity: 0, y: 50 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 transition={{ ...springAnimation, duration: 0.8 }}
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="relative w-full p-0 rounded-[24px] sm:rounded-[32px] flex flex-col overflow-hidden group max-[414px]:w-full"
+                className="relative h-full w-full p-0 rounded-[24px] sm:rounded-[32px] flex flex-col overflow-hidden group max-[414px]:w-full"
                 style={{
                   background: "linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.05) 100%)",
                   backdropFilter: "blur(20px) saturate(180%) brightness(110%)",
                   border: "1px solid rgba(255,255,255,0.2)",
                   boxShadow: "0 32px 64px rgba(0,0,0,0.15), 0 16px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3)",
-                  minHeight: '400px'
+                  minHeight: 'auto',
+                  height: '100%'
                 }}
               >
                 {/* Elementos decorativos de fundo */}
@@ -505,10 +506,11 @@ export default function Bentolio({
                 
                 {/* Área do produto atual - ocupando a maior parte do espaço */}
                 <motion.div 
-                  className="flex-1 flex flex-col relative overflow-hidden min-h-[300px]"
+                  className="flex-1 flex flex-col relative overflow-hidden h-full"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.6 }}
+                  style={{ height: '100%' }}
                 >
                   {displayProjects && displayProjects.length > 0 && (
                     <div className="flex-1 flex flex-col relative">
@@ -535,7 +537,7 @@ export default function Bentolio({
                           }}
                           onMouseDown={(e) => {
                             // Verificar se estamos no cliente antes de usar document
-                            if (typeof window === 'undefined') return;
+                            if (typeof document === 'undefined') return;
                             
                             pauseAutoPlay();
                             const startX = e.clientX;

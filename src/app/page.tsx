@@ -2,7 +2,7 @@ import Bentolio from "@/components/ui/bentolio";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="h-screen w-screen overflow-hidden fixed inset-0">
       <Bentolio
         name={{
           first: "SMART",
