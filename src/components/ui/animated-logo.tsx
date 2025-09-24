@@ -47,7 +47,7 @@ export default function AnimatedLogo({
 
         .logo-path {
           fill: none;
-          stroke: #FFFFFF;
+          stroke: #FF7550;
           stroke-width: 8;
           stroke-linecap: round;
           stroke-linejoin: round;
@@ -57,7 +57,7 @@ export default function AnimatedLogo({
         }
 
         .logo-fill {
-          fill: #FFFFFF;
+          fill: #FF7550;
           opacity: 0;
           animation: fillLogo 2s ease-in-out 7.5s forwards;
         }

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import React, { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -101,6 +101,10 @@ export default function Bentolio({
     ? projectCategories[selectedCategory] 
     : projects;
 
+
+
+
+
   // Auto-play do carrossel
   useEffect(() => {
     if (!displayProjects || displayProjects.length <= 1 || !isAutoPlaying) return;
@@ -142,14 +146,14 @@ export default function Bentolio({
       <AnimatePresence>
         <header key="header" className="rounded-[20px] w-full">
           <motion.div
-            style={{ backgroundColor: "#D8CFBC" }}
+            style={{ backgroundColor: "#041F2C" }}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={springAnimation}
             className="flex sm:flex-row flex-col justify-between items-center p-4 sm:p-6 rounded-[20px] w-full"
           >
             <div className="w-full flex justify-center">
-              <h1 className="font-light text-2xl sm:text-3xl lg:text-4xl" style={{ color: "#11120D" }}>
+              <h1 className="font-light text-2xl sm:text-3xl lg:text-4xl" style={{ color: "#E7F0F7" }}>
                 <i>{name.first}</i>{" "}
                 <span className="font-medium">{name.last}</span>
               </h1>
@@ -158,13 +162,13 @@ export default function Bentolio({
         </header>
 
         <div key="main-content" className="gap-4 grid grid-cols-1 lg:grid-cols-9 flex-1">
-          <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:col-span-6">
+          <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:col-span-6 max-[414px]:grid-cols-1">
             <div className="sm:col-span-2 lg:col-span-4 rounded-[20px] h-full">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={springAnimation}
-                style={{ backgroundColor: "#D8CFBC" }}
+                style={{ backgroundColor: "#041F2C" }}
                 className="flex flex-col justify-between p-4 sm:p-6 pb-6 sm:pb-10 rounded-[20px] h-full"
               >
                 <div className="flex justify-end w-full">
@@ -174,7 +178,7 @@ export default function Bentolio({
                     className="m-0 w-36 sm:w-40 lg:w-44"
                   />
                 </div>
-                <p className="m-0 w-full sm:w-[90%] font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight sm:leading-tight" style={{ color: "#11120D" }}>
+                <p className="m-0 w-full sm:w-[90%] font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight sm:leading-tight" style={{ color: "#E7F0F7" }}>
                   {title.includes(curvedText) ? (
                     title.split(curvedText).map((part, i) =>
                       i === 0 ? (
@@ -198,7 +202,8 @@ export default function Bentolio({
                 initial={{ translateX: -100, translateY: -100 }}
                 animate={{ translateX: 0, translateY: 0 }}
                 transition={{ ...springAnimation, delay: 0.5 }}
-                className="w-full h-full min-h-[300px] sm:min-h-[400px] bg-black rounded-[20px] overflow-hidden"
+                className="w-full h-full min-h-[300px] sm:min-h-[400px] rounded-[20px] overflow-hidden"
+                style={{ backgroundColor: "#000000" }}
               >
                 <video
                   className="w-full h-full object-cover"
@@ -210,7 +215,7 @@ export default function Bentolio({
                   {/* Elemento decorativo de fundo */}
                   <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/20 to-transparent rounded-full blur-xl"></div>
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#D8CFBC]/30 to-transparent rounded-full blur-lg"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#041F2C]/30 to-transparent rounded-full blur-lg"></div>
                   </div>
                   <source src="/videos/video_smart_print.mp4" type="video/mp4" />
                   <p className="text-white text-center text-lg sm:text-xl flex items-center justify-center h-full">
@@ -223,7 +228,7 @@ export default function Bentolio({
             <div className="sm:col-span-1 lg:col-span-3">
               <motion.div
                 style={{ 
-                  backgroundColor: "#D8CFBC",
+                  backgroundColor: "#041F2C",
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(16px)",
                   border: "1px solid rgba(255, 255, 255, 0.2)"
@@ -287,13 +292,13 @@ export default function Bentolio({
                     }
                   }}
                 >
-                  <Image
+                  <img
                     src="/bentolio/images/Smart Print - Icone 2.svg"
                     alt="Smart Print Icon"
                     width={28}
                     height={28}
                     className="w-7 h-7 drop-shadow-sm"
-                    style={{ filter: "brightness(0) saturate(100%) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))" }}
+                    style={{ filter: "brightness(0) saturate(100%) invert(48%) sepia(69%) saturate(2476%) hue-rotate(346deg) brightness(104%) contrast(97%) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))" }}
                   />
                 </motion.div>
 
@@ -302,7 +307,7 @@ export default function Bentolio({
                   <p 
                     className="m-0 w-full sm:w-[95%] font-medium text-base sm:text-lg lg:text-xl leading-relaxed tracking-wide"
                     style={{ 
-                      color: "#2C2922",
+                      color: "#E7F0F7",
                       textShadow: "0 1px 2px rgba(255, 255, 255, 0.5)",
                       lineHeight: "1.6"
                     }}
@@ -314,7 +319,7 @@ export default function Bentolio({
                   <motion.div 
                     className="mt-4 h-1 rounded-full"
                     style={{
-                      background: "linear-gradient(90deg, #4A453C 0%, rgba(74, 69, 60, 0.3) 50%, transparent 100%)",
+                      background: "linear-gradient(90deg, #E7F0F7 0%, rgba(231, 240, 247, 0.3) 50%, transparent 100%)",
                       width: "60px"
                     }}
                     initial={{ width: 0 }}
@@ -340,16 +345,16 @@ export default function Bentolio({
                   scale: 1.02,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2)"
                 }}
-                className="relative flex flex-col justify-between items-start gap-6 sm:gap-8 sm:px-6 sm:py-8 p-4 rounded-[24px] h-full overflow-hidden backdrop-blur-sm border border-white/20 shadow-2xl"
+                className="relative flex flex-col justify-between items-start gap-6 sm:gap-8 sm:px-6 sm:py-8 p-4 rounded-[24px] h-full min-h-[200px] sm:min-h-0 overflow-hidden backdrop-blur-sm border border-white/20 shadow-2xl"
                 style={{ 
-                  backgroundColor: "#D8CFBC",
-                  color: "#11120D",
+                  backgroundColor: "#041F2C",
+                  color: "#E7F0F7",
                   boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)"
                 }}
               >
                 <div className="flex justify-between items-center w-full">
                   <p className="relative z-10 w-20 sm:w-[80px] font-light text-sm sm:text-base lg:text-lg leading-tight tracking-wide" style={{ 
-                    color: "#4A453C",
+                    color: "#E7F0F7",
                     textShadow: "0 1px 2px rgba(255, 255, 255, 0.5)"
                   }}>
                     Tem alguma dúvida?
@@ -385,7 +390,7 @@ export default function Bentolio({
                     >
                       <path
                         d="M7 17L17 7M17 7H7M17 7V17"
-                        stroke="#4A453C"
+                        stroke="#E7F0F7"
                         strokeWidth="2.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -395,27 +400,26 @@ export default function Bentolio({
                   </motion.div>
                 </div>
                 <p className="relative z-10 m-0 font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none" style={{ 
-                  color: "#4A453C",
                   textShadow: "0 2px 4px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(255, 255, 255, 0.3)",
-                  background: "linear-gradient(135deg, #4A453C 0%, #2C2922 50%, #4A453C 100%)",
+                  backgroundImage: "linear-gradient(135deg, #E7F0F7 0%, #f5d89a 50%, #E7F0F7 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text"
                 }}>
-                  Entre em contato
+                  Entre em Contato
                 </p>
               </motion.div>
             </Link>
           </div>
 
-          <div className="flex flex-col gap-6 lg:col-span-3">
-            <div className="flex-1">
+          <div className="flex flex-col gap-6 lg:col-span-3 max-[414px]:col-span-1 max-[414px]:w-full">
+            <div className="flex-1 max-[414px]:min-h-[70vh]">
               <motion.div
                 initial={{ scale: 0, opacity: 0, y: 50 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 transition={{ ...springAnimation, duration: 0.8 }}
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="relative h-full p-0 rounded-[32px] flex flex-col overflow-hidden group"
+                className="relative h-full p-0 rounded-[32px] flex flex-col overflow-hidden group max-[414px]:w-full max-[414px]:h-full"
                 style={{
                   background: "linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.05) 100%)",
                   backdropFilter: "blur(20px) saturate(180%) brightness(110%)",
@@ -435,18 +439,17 @@ export default function Bentolio({
                 
                 {/* Título e navegação por categorias - mais compacto */}
                 <div className="relative z-10 p-4 sm:p-6 rounded-t-[32px] flex-shrink-0" style={{ 
-                  background: "linear-gradient(135deg, #D8CFBC 0%, #C5B8A5 50%, #D8CFBC 100%)",
+                  background: "linear-gradient(135deg, #041F2C 0%, #041F2C 50%, #041F2C 100%)",
                   boxShadow: "inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 16px rgba(0,0,0,0.1)"
                 }}>
                   <motion.h3 
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
-                    className="coolvetica-font text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 tracking-wide"
+                    className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 tracking-wide"
                     style={{ 
-                      color: "#11120D",
                       textShadow: "0 2px 4px rgba(0,0,0,0.1), 0 1px 2px rgba(255,255,255,0.8)",
-                      background: "linear-gradient(135deg, #11120D 0%, #2C2922 50%, #11120D 100%)",
+                      backgroundImage: "linear-gradient(135deg, #E7F0F7 0%, #f5d89a 50%, #E7F0F7 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text"
@@ -478,23 +481,33 @@ export default function Bentolio({
                                ? 'shadow-2xl transform scale-110'
                                : 'hover:shadow-xl'
                            }`}
-                          style={{
-                            background: selectedCategory === category 
-                              ? 'linear-gradient(135deg, #1C1C1C 0%, #2C2C2C 50%, #1C1C1C 100%)'
-                              : 'rgba(255,255,255,0.15)',
-                            backdropFilter: 'blur(10px)',
-                            border: selectedCategory === category 
-                              ? '2px solid rgba(239,119,34,0.6)'
-                              : '1px solid rgba(255,255,255,0.3)',
-                            color: selectedCategory === category ? 'white' : '#11120D',
-                            boxShadow: selectedCategory === category 
-                              ? '0 8px 32px rgba(239,119,34,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
-                              : '0 4px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3)'
-                          }}
                         >
+                          {/* Efeito liquid-glass de fundo */}
+                          <div className="absolute top-0 left-0 z-0 h-full w-full rounded-full bg-white/20
+                            shadow-[0_0_6px_rgba(255,255,255,0.1),0_2px_6px_rgba(255,255,255,0.15),inset_3px_3px_0.5px_-3px_rgba(255,255,255,0.9),inset_-3px_-3px_0.5px_-3px_rgba(255,255,255,0.85),inset_1px_1px_1px_-0.5px_rgba(255,255,255,0.6),inset_-1px_-1px_1px_-0.5px_rgba(255,255,255,0.6),inset_0_0_6px_6px_rgba(255,255,255,0.05)]
+                            transition-all 
+                            dark:shadow-[0_0_8px_rgba(255,255,255,0.1),0_2px_6px_rgba(255,255,255,0.15),inset_3px_3px_0.5px_-3.5px_rgba(255,255,255,0.9),inset_-3px_-3px_0.5px_-3.5px_rgba(255,255,255,0.85),inset_1px_1px_1px_-0.5px_rgba(255,255,255,0.6),inset_-1px_-1px_1px_-0.5px_rgba(255,255,255,0.6),inset_0_0_6px_6px_rgba(255,255,255,0.05)]"
+                          />
+                          <div
+                            className="absolute top-0 left-0 isolate -z-10 h-full w-full overflow-hidden rounded-full"
+                            style={{ backdropFilter: 'url("#container-glass")' }}
+                          />
+                          
+                          <span className="relative z-10"
+                            style={{
+                              color: selectedCategory === category 
+                                ? '#ffffff'
+                                : '#E7F0F7',
+                              textShadow: selectedCategory === category 
+                                ? '0 1px 3px rgba(0,0,0,0.8)'
+                                : '0 1px 2px rgba(0,0,0,0.5)'
+                            }}
+                          >
+                            {category}
+                          </span>
+                          
                           {/* Efeito de brilho no hover */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
-                          <span className="relative z-10">{category}</span>
                         </motion.button>
                       ))}
                     </motion.div>
@@ -503,17 +516,19 @@ export default function Bentolio({
                 
                 {/* Área do produto atual - ocupando a maior parte do espaço */}
                 <motion.div 
-                  className="flex-1 flex flex-col relative overflow-hidden min-h-0"
+                  className="flex-1 flex flex-col relative overflow-hidden min-h-[400px] max-[414px]:min-h-[50vh]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.6 }}
+                  style={{ minHeight: '400px' }}
                 >
                   {displayProjects && displayProjects.length > 0 && (
                     <div className="flex-1 flex flex-col relative">
                       {/* Imagem do produto ocupando todo o espaço restante */}
-                      {displayProjects[currentProjectIndex]?.image && (
-                        <motion.div 
-                          className="relative w-full flex-1 cursor-grab active:cursor-grabbing group/image overflow-hidden min-h-[300px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] bg-gradient-to-br from-white/5 to-white/10 rounded-lg"
+                      {displayProjects && displayProjects[currentProjectIndex] && (
+                          <motion.div 
+                             className="relative w-full h-full cursor-grab active:cursor-grabbing group/image overflow-hidden bg-gradient-to-br from-white/5 to-white/10 rounded-md"
+                             style={{ minHeight: '300px' }}
                           whileHover={{ scale: 1.02 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
                           onWheel={(e) => {
@@ -586,42 +601,40 @@ export default function Bentolio({
                             transition={{ duration: 0.5, ease: "easeOut" }}
                             className="absolute inset-0"
                           >
-                            <Image
-                              src={displayProjects[currentProjectIndex].image}
-                              alt={displayProjects[currentProjectIndex].name}
-                              fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              priority
-                              className={`object-contain transition-all duration-500 ease-out select-none ${
-                                isDragging 
-                                  ? dragDirection === 'right' 
-                                    ? 'scale-110 translate-x-3 brightness-110 saturate-110' 
-                                    : 'scale-110 -translate-x-3 brightness-110 saturate-110'
-                                  : 'group-hover/image:scale-105 group-hover/image:brightness-105'
-                              }`}
-                              style={{
-                                objectFit: 'contain',
-                                objectPosition: 'center'
-                              }}
-                              draggable={false}
-                            />
+                            {displayProjects[currentProjectIndex].image ? (
+                              <img
+                                src={encodeURI(displayProjects[currentProjectIndex].image)}
+                                alt={displayProjects[currentProjectIndex].name}
+                                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out select-none ${
+                                  isDragging 
+                                    ? dragDirection === 'right' 
+                                      ? 'scale-110 translate-x-3 brightness-110 saturate-110' 
+                                      : 'scale-110 -translate-x-3 brightness-110 saturate-110'
+                                    : 'group-hover/image:scale-105 group-hover/image:brightness-105'
+                                }`}
+                                style={{
+                                  objectFit: 'cover',
+                                  objectPosition: 'center'
+                                }}
+                                draggable={false}
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                }}
+                              />
+                            ) : (
+                              <div className="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-500">
+                                <span>Imagem não disponível</span>
+                              </div>
+                            )}
                           </motion.div>
                           
-                          {/* Overlay gradiente sofisticado */}
+                          {/* Overlay gradiente simplificado */}
                           <div className="absolute inset-0 pointer-events-none">
-                            <div className={`absolute inset-0 transition-all duration-500 ${
+                            <div className={`absolute inset-0 transition-all duration-300 ${
                               isDragging 
-                                ? 'bg-gradient-to-t from-[#EF7722]/40 via-purple-500/10 to-transparent' 
-                                : 'bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover/image:from-black/20'
+                                ? 'bg-gradient-to-t from-[#041F2C]/20 to-transparent' 
+                                : 'bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover/image:from-black/10'
                             }`} />
-                            
-                            {/* Efeito de brilho no hover */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
-                            
-                            {/* Partículas flutuantes - responsivas */}
-                             <div className="absolute top-2 left-2 sm:top-4 sm:left-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/40 rounded-full animate-ping" />
-                             <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-1 h-1 bg-[#EF7722]/60 rounded-full animate-pulse delay-300" />
-                             <div className="absolute bottom-8 left-4 sm:bottom-12 sm:left-8 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400/50 rounded-full animate-pulse delay-700" />
                           </div>
                           {/* Indicador visual de direção durante o arrasto */}
                            {isDragging && dragDirection && (
@@ -636,7 +649,7 @@ export default function Bentolio({
                                <div 
                                  className="backdrop-blur-md text-white px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold shadow-2xl border border-white/20"
                                  style={{ 
-                                   background: 'linear-gradient(135deg, #EF7722 0%, #FF8A3D 50%, #EF7722 100%)',
+                                   background: 'linear-gradient(135deg, #041F2C 0%, #041F2C 50%, #041F2C 100%)',
                                    boxShadow: '0 8px 32px rgba(239,119,34,0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
                                  }}
                                >
@@ -650,91 +663,53 @@ export default function Bentolio({
                                </div>
                              </motion.div>
                            )}
-                          {/* Nome do produto com design sofisticado */}
-                          <div className="absolute bottom-0 left-0 right-0 z-20">
-                            <div 
-                               className="p-3 sm:p-4 md:p-6 backdrop-blur-xl"
-                               style={{
-                                 background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.95) 100%)',
-                                 borderTop: '1px solid rgba(255,255,255,0.1)'
-                               }}
+                          {/* Nome do produto e contador integrados */}
+                          <div className="absolute top-4 left-4 right-4 z-20">
+                            <motion.div 
+                             key={`${selectedCategory}-${currentProjectIndex}`}
+                             initial={{ opacity: 0, y: -20 }}
+                             animate={{ opacity: 1, y: 0 }}
+                             transition={{ duration: 0.5, ease: "easeOut" }}
+                             className="flex items-center justify-between px-3 py-2 rounded-md border-l-4 border-white/60"
+                             style={{
+                               background: 'linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+                               backdropFilter: 'blur(8px)',
+                               boxShadow: '0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
+                             }}
+                           >
+                             {/* Título do produto */}
+                             <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-600 tracking-wide leading-tight"
+                                 style={{
+                                   textShadow: '0 1px 3px rgba(0,0,0,0.7)',
+                                   letterSpacing: '0.03em'
+                                 }}
                              >
-                              <motion.div 
-                                 className="flex items-center gap-2 sm:gap-3"
-                                 initial={{ opacity: 0, y: 30 }}
-                                 animate={{ opacity: 1, y: 0 }}
-                                 transition={{ delay: 0.2, duration: 0.6 }}
-                               >
-                                {/* Indicador animado */}
-                                 <div className="relative">
-                                   <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full animate-pulse" style={{ backgroundColor: '#EF7722' }} />
-                                   <div className="absolute inset-0 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full animate-ping" style={{ backgroundColor: '#EF7722', opacity: 0.4 }} />
-                                 </div>
-                                
-                                <motion.h4 
-                                 key={`${selectedCategory}-${currentProjectIndex}`}
-                                 initial={{ opacity: 0, x: -20 }}
-                                 animate={{ opacity: 1, x: 0 }}
-                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                 className="coolvetica-font text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white tracking-wide flex-1"
-                                 style={{
-                                   textShadow: '0 4px 8px rgba(0,0,0,0.5), 0 2px 4px rgba(239,119,34,0.3)',
-                                   background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 50%, #FFFFFF 100%)',
-                                   WebkitBackgroundClip: 'text',
-                                   WebkitTextFillColor: 'transparent',
-                                   backgroundClip: 'text'
-                                 }}
-                               >
-                                 {displayProjects[currentProjectIndex].name}
-                               </motion.h4>
-                              </motion.div>
-                              
-                              {/* Linha decorativa */}
-                               <motion.div 
-                                 className="mt-1.5 sm:mt-2 h-0.5 rounded-full"
-                                 style={{
-                                   background: 'linear-gradient(90deg, #EF7722 0%, #FF8A3D 50%, #EF7722 100%)'
-                                 }}
-                                 initial={{ width: 0 }}
-                                 animate={{ width: '100%' }}
-                                 transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-                               />
-                            </div>
+                               {displayProjects[currentProjectIndex].name}
+                             </h4>
+                             
+                             {/* Contador integrado */}
+                              {displayProjects.length > 1 && (
+                                <div className="flex flex-col items-end gap-1">
+                                  <div className="flex items-center gap-1.5">
+                                     <span className="text-gray-600 font-bold text-sm sm:text-base">{currentProjectIndex + 1}</span>
+                                     <div className="w-px h-3 bg-gray-600/50" />
+                                     <span className="text-gray-600/80 text-sm sm:text-base">{displayProjects.length}</span>
+                                   </div>
+                                 
+                                 {/* Barra de progresso compacta */}
+                                  <div className="w-12 sm:w-16 h-0.5 bg-gray-600/30 rounded-full overflow-hidden">
+                                    <motion.div 
+                                      className="h-full rounded-full"
+                                      style={{ background: 'linear-gradient(90deg, #4a5568 0%, #2d3748 100%)' }}
+                                      initial={{ width: 0 }}
+                                      animate={{ width: `${((currentProjectIndex + 1) / displayProjects.length) * 100}%` }}
+                                      transition={{ duration: 0.5, ease: "easeOut" }}
+                                    />
+                                  </div>
+                               </div>
+                             )}
+                           </motion.div>
                           </div>
-                          {/* Contador de produtos sofisticado */}
-                           {displayProjects.length > 1 && (
-                             <motion.div 
-                               className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 flex items-center gap-2 sm:gap-3 z-30"
-                               initial={{ opacity: 0, scale: 0.8 }}
-                               animate={{ opacity: 1, scale: 1 }}
-                               transition={{ delay: 1, duration: 0.5 }}
-                             >
-                              <div 
-                                 className="backdrop-blur-xl text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold shadow-2xl border border-white/20 group/counter"
-                                 style={{ 
-                                   background: 'linear-gradient(135deg, rgba(28,28,28,0.9) 0%, rgba(44,44,44,0.9) 50%, rgba(28,28,28,0.9) 100%)',
-                                   boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
-                                 }}
-                               >
-                                <div className="flex items-center gap-1.5 sm:gap-2">
-                                   <span className="text-[#EF7722] font-bold">{currentProjectIndex + 1}</span>
-                                   <div className="w-px h-3 sm:h-4 bg-white/30" />
-                                   <span className="text-white/70">{displayProjects.length}</span>
-                                 </div>
-                                
-                                {/* Barra de progresso */}
-                                 <div className="mt-1.5 sm:mt-2 w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
-                                   <motion.div 
-                                     className="h-full rounded-full"
-                                     style={{ background: 'linear-gradient(90deg, #EF7722 0%, #FF8A3D 100%)' }}
-                                     initial={{ width: 0 }}
-                                     animate={{ width: `${((currentProjectIndex + 1) / displayProjects.length) * 100}%` }}
-                                     transition={{ duration: 0.5, ease: "easeOut" }}
-                                   />
-                                 </div>
-                              </div>
-                            </motion.div>
-                          )}
                         </motion.div>
                       )}
                     </div>
@@ -743,36 +718,26 @@ export default function Bentolio({
               </motion.div>
             </div>
 
+            {/* Container Liquid Glass separado - apenas os botões sociais */}
             <div>
               <motion.div
-                className="relative overflow-hidden rounded-[24px] p-8 backdrop-blur-sm"
-                style={{ 
-                  background: "#000000",
-                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
-                }}
+                className="relative w-full h-auto p-8 flex flex-col items-center justify-center gap-4 text-gray-800 hover:text-gray-900 rounded-full"
+                style={{ alignItems: 'center', justifyContent: 'center' }}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={springAnimation}
               >
-                {/* Brilho sutil no topo */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                
-                {/* Container LiquidButton que envolve os dois botões */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2 }}
-                >
-                  <div className="relative w-full h-auto p-6 flex flex-col items-center justify-center gap-4 text-gray-800 hover:text-gray-900 rounded-full" style={{ alignItems: 'center', justifyContent: 'center' }}>
-                     {/* Efeito liquid-glass de fundo */}
-                     <div className="absolute top-0 left-0 z-0 h-full w-full rounded-full bg-white/20
-                           shadow-[0_0_6px_rgba(255,255,255,0.1),0_2px_6px_rgba(255,255,255,0.15),inset_3px_3px_0.5px_-3px_rgba(255,255,255,0.9),inset_-3px_-3px_0.5px_-3px_rgba(255,255,255,0.85),inset_1px_1px_1px_-0.5px_rgba(255,255,255,0.6),inset_-1px_-1px_1px_-0.5px_rgba(255,255,255,0.6),inset_0_0_6px_6px_rgba(255,255,255,0.12),inset_0_0_2px_2px_rgba(255,255,255,0.06),0_0_12px_rgba(255,255,255,0.25)] 
-                       transition-all 
-                       dark:shadow-[0_0_8px_rgba(255,255,255,0.1),0_2px_6px_rgba(255,255,255,0.15),inset_3px_3px_0.5px_-3.5px_rgba(255,255,255,0.9),inset_-3px_-3px_0.5px_-3.5px_rgba(255,255,255,0.85),inset_1px_1px_1px_-0.5px_rgba(255,255,255,0.6),inset_-1px_-1px_1px_-0.5px_rgba(255,255,255,0.6),inset_0_0_6px_6px_rgba(255,255,255,0.12),inset_0_0_2px_2px_rgba(255,255,255,0.06),0_0_12px_rgba(255,255,255,0.25)]" />
-                     <div
-                         className="absolute top-0 left-0 isolate -z-10 h-full w-full overflow-hidden rounded-full"
-                         style={{ backdropFilter: 'url("#container-glass")' }}
-                       />
+                {/* Efeito liquid-glass de fundo */}
+                 <div className="absolute top-0 left-0 z-0 h-full w-full rounded-full"
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        boxShadow: '0 0 6px rgba(255, 255, 255, 0.1), 0 2px 6px rgba(255, 255, 255, 0.15), inset 3px 3px 0.5px -3px rgba(255, 255, 255, 0.9), inset -3px -3px 0.5px -3px rgba(255, 255, 255, 0.85), inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.6), inset -1px -1px 1px -0.5px rgba(255, 255, 255, 0.6), inset 0 0 6px 6px rgba(255, 255, 255, 0.12), inset 0 0 2px 2px rgba(255, 255, 255, 0.06), 0 0 12px rgba(255, 255, 255, 0.25)',
+                        transition: 'all 0.3s ease'
+                      }} />
+                <div
+                    className="absolute top-0 left-0 isolate -z-10 h-full w-full overflow-hidden rounded-full"
+                    style={{ backdropFilter: 'url("#container-glass")' }}
+                  />
                      
                      {/* Grid de links sociais dentro do container liquid-glass */}
                      <div className="grid grid-cols-2 gap-4 w-full relative z-10">
@@ -834,8 +799,6 @@ export default function Bentolio({
                           </filter>
                         </defs>
                       </svg>
-                    </div>
-                 </motion.div>
               </motion.div>
             </div>
           </div>

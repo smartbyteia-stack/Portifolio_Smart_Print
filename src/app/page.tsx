@@ -20,17 +20,12 @@ export default function Home() {
             },
             {
               name: "Chaveiro Instagram",
-              image: "/carousel/Chaveiro/chaveiro instagram.png",
+              image: "/carousel/Chaveiro/chaveiro instagram com RFID.png",
               link: "#"
             },
             {
               name: "Chaveiro Tripleween",
-              image: "/carousel/Chaveiro/chaveiro tripleween.jpeg",
-              link: "#"
-            },
-            {
-              name: "Tripple Keychain",
-              image: "/carousel/Chaveiro/tripple_keychain.png",
+              image: "/carousel/Chaveiro/chaveiro tripleween.png",
               link: "#"
             }
           ],
@@ -103,8 +98,8 @@ export default function Home() {
               link: "#"
             },
             {
-              name: "Luminária Principal",
-              image: "/carousel/Decoração/luminaria_principal.png",
+              name: "Luminária Personalizada",
+              image: "/carousel/Decoração/luminária personalizada.png",
               link: "#"
             },
             {
@@ -182,7 +177,7 @@ export default function Home() {
         contactLink="https://api.whatsapp.com/send?phone=5569999914773&text=Ol%C3%A1%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20uma%20impress%C3%A3o%203D"
         profileImage="/bentolio/images/Smart Byte - Horizontal.png"
         bg="#F6F1E9"
-        secondary="#EF7722"
+        secondary="#041F2C"
         secondaryTextColor="#4F200D"
       />
     </div>
