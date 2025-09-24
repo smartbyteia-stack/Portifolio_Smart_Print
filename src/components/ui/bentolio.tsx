@@ -19,22 +19,17 @@ interface NameProps {
 }
 
 interface BentolioProps {
-  bg?: string;
-  secondary?: string;
   name?: NameProps;
   title?: string;
-  secondaryTextColor?: string;
   curvedText?: string;
   description?: string;
   projects?: Project[];
   projectCategories?: Record<string, Project[]>;
-  profileImage?: string;
   contactLink?: string;
   socialLinks?: {
     name: string;
     url: string;
   }[];
-  navLinks?: string[];
 }
 
 const springAnimation = {

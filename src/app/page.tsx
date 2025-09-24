@@ -175,10 +175,6 @@ export default function Home() {
           { name: "WhatsApp", url: "https://api.whatsapp.com/send?phone=5569999914773&text=Ol%C3%A1%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20uma%20impress%C3%A3o%203D" }
         ]}
         contactLink="https://api.whatsapp.com/send?phone=5569999914773&text=Ol%C3%A1%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20uma%20impress%C3%A3o%203D"
-        profileImage="/bentolio/images/Smart Byte - Horizontal.png"
-        bg="#F6F1E9"
-        secondary="#041F2C"
-        secondaryTextColor="#4F200D"
       />
     </div>
   );
